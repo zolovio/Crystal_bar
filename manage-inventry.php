@@ -35,17 +35,18 @@ header("location:login");
                                 class="nav-link dropdown-toggle float-right px-2 rounded border bg-primary text-white"
                                 data-toggle="dropdown" aria-expanded="false">Filter
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox"
-                                        class="mx-2" /> Category #1</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox"
-                                        class="mx-2" /> Category #2</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox"
-                                        class="mx-2" /> Category #3</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox"
-                                        class="mx-2" /> Category #4</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox"
-                                        class="mx-2" /> Category #5</a>
+                            <div class="dropdown-menu dropdown-menu-right" id="filter-options">
+                                <?php 
+                                    require_once("connect.php");
+                                    $query2 = "SELECT * FROM category order by name";
+                                    $run2 = mysqli_query($con,$query2);
+                                    while($row2 = mysqli_fetch_array($run2)){
+                                      $cid = $row2['id'];
+                                      $name = $row2['name'];
+                                  ?>
+                                    <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" value="<?php echo $cid; ?>" data-filter_id="<?php echo $cid; ?>" class="mx-2" /> <?php echo $name; ?></a>
+                                    
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -136,6 +137,39 @@ header("location:login");
             });
         }
 
+
+        function showproduct2(cid){
+            $.ajax({
+                url : "api/getproducts",
+                type : "POST",
+                data : {cid: cid},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    if(data){
+                        $('#loadmore').remove();
+                        $("#product").html(data);
+                    }else{
+                        $('#loadmore').html('Fineshed');
+                    }
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+
+        $("#filter-options :checkbox").click(function(){
+            var arr = [];
+            $("#filter-options :checkbox:checked").each(function(){
+               arr.push($(this).val());
+            });
+            arr = arr.toString();
+            console.log(arr);     
+            showproduct2(arr);
+        });
     </script>
 </body>
 </html>

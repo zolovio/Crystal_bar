@@ -1,6 +1,11 @@
 <?php
     require_once("../connect.php");
-    $query = "SELECT p.id,p.name,p.price,p.quantity,p.gst, c.id as cid, c.name as cname FROM product as p JOIN category as c WHERE p.catid = c.id AND status = 1";
+    if(isset($_POST['cid']) && !empty($_POST['cid'])){
+        $cid = $_POST['cid'];
+        $query="SELECT p.id,p.name,p.price,p.quantity,p.gst, c.id as cid, c.name as cname FROM product as p JOIN category as c WHERE p.catid = c.id AND status = 1 AND catid IN ($cid)";
+    }else{
+        $query = "SELECT p.id,p.name,p.price,p.quantity,p.gst, c.id as cid, c.name as cname FROM product as p JOIN category as c WHERE p.catid = c.id AND status = 1";
+    }
     $run = mysqli_query($con,$query);
     if(mysqli_num_rows($run) > 0){
 ?>
