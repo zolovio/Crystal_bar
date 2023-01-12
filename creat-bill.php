@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION["crbadminid"])){
+header("location:login");
+}else{ ?>
 <?php require_once('top.php'); ?>
 
     <!-- Main Wrapper -->
@@ -389,3 +394,4 @@
 
 </body>
 </html>
+<?php } ?>

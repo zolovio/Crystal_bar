@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION["crbadminid"])){
+header("location:login");
+}else{ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -337,5 +342,5 @@
     
     <?php require_once('footer.php'); ?>
 </body>
-
 </html>
+<?php } ?>
