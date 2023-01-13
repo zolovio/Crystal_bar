@@ -5,6 +5,11 @@ header("location:login");
 }else{ ?>
 <?php require_once('top.php'); ?>
 
+    <div id="loader1">
+      <div id="loader2">
+        <div class="loader"></div>
+      </div>
+    </div>
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- Header -->
@@ -28,370 +33,118 @@ header("location:login");
                             <a href=""
                                 class="nav-link dropdown-toggle float-right px-2 rounded border bg-primary text-white"
                                 data-toggle="dropdown" aria-expanded="false">Filter </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item " href="javascript:void(0)"><input type="checkbox" class="mx-2">
-                                    Category #1</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" class="mx-2">
-                                    Category #2</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" class="mx-2">
-                                    Category #3</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" class="mx-2">
-                                    Category #4</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" class="mx-2">
-                                    Category #5</a>
+                            <div class="dropdown-menu dropdown-menu-right" id="filter-options">
+                                <?php 
+                                    require_once("connect.php");
+                                    $query2 = "SELECT * FROM category order by name";
+                                    $run2 = mysqli_query($con,$query2);
+                                    while($row2 = mysqli_fetch_array($run2)){
+                                      $cid = $row2['id'];
+                                      $name = $row2['name'];
+                                  ?>
+                                    <a class="dropdown-item" href="javascript:void(0)"><input type="checkbox" value="<?php echo $cid; ?>" data-filter_id="<?php echo $cid; ?>" class="mx-2" /> <?php echo $name; ?></a>
+                                    
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- catogery one Table -->
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center my-1">
-                        <h3>Category #1</h3>
-                    </div>
-                    <div class="col-md-12 sales-table">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th class="text-left">Product Name</th>
-                                        <th>Stock available</th>
+                <div id="product"></div>
 
-                                        <th>Amount</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        
-                                        <td>#1</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
- 
-                                        <td>#2</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>#3</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>#4</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /catogery one Table end -->
-
-                <!-- catogery two Table -->
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center my-1">
-                        <h3>Category #2</h3>
-                    </div>
-                    <div class="col-md-12 sales-table">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th class="text-left">Product Name</th>
-                                        <th>Stock available</th>
-
-                                        <th>Amount</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-
-                                        <td>#1</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>#2</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td>#3</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#4</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /catogery two Table end -->
-
-                <!-- catogery three Table -->
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center my-1">
-                        <h3>Category #3</h3>
-                    </div>
-                    <div class="col-md-12 sales-table">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th class="text-left">Product Name</th>
-                                        <th>Stock available</th>
-
-                                        <th>Amount</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                    
-                                        <td>#1</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#2</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#3</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#4</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /catogery three Table end -->
-                <!-- catogery four Table -->
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center my-1">
-                        <h3>Category #4</h3>
-                    </div>
-                    <div class="col-md-12 sales-table">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th class="text-left">Product Name</th>
-                                        <th>Stock available</th>
-
-                                        <th>Amount</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                    
-                                        <td>#1</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td>#2</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i
-                                                class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                    
-                                        <td>#3</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#4</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /catogery four Table end -->
-                <!-- catogery five Table -->
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center my-1">
-                        <h3>Category #5</h3>
-                    </div>
-                    <div class="col-md-12 sales-table">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th class="text-left">Product Name</th>
-                                        <th>Stock available</th>
-
-                                        <th>Amount</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                    
-                                        <td>#1</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td>#2</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#3</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>#4</td>
-                                        <td class="text-left">samosa</td>
-                                        <td>28</td>
-                                        <td><span class="text-success">₹ </span> 17.00</td>
-                                        <td> <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-2"></i></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /catogery five Table end -->
             </div>
-            <!-- Page Wrapper -->
-            <div class="row justify-content-center">
-                <div>
-                    <ul class="pagination pagination-lg">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
 
        
     </div>
 
     <?php require_once('footer.php'); ?>
+    <script>
+        function showproduct(){
+            $.ajax({
+                url : "api/getproductlist",
+                type : "POST",
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    if(data){
+                        $("#product").append(data);
+                    }
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+        showproduct();
 
+        function showproduct2(cid){
+            $.ajax({
+                url : "api/getproductlist",
+                type : "POST",
+                data : {cid: cid},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    if(data){
+                        $("#product").html(data);
+                    }
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+
+        $("#filter-options :checkbox").click(function(){
+            var arr = [];
+            $("#filter-options :checkbox:checked").each(function(){
+               arr.push($(this).val());
+            });
+            arr = arr.toString();
+            console.log(arr);     
+            showproduct2(arr);
+        });
+
+        function addqnty(id){
+            var cartqntyval = parseInt($('#cartqntyval'+id).html());
+            newVal = cartqntyval+1;
+            $("#cartqntyval"+id).html(newVal);
+            manageproduct(id,newVal);
+            showcartproduct();
+        }
+
+        function cartminus(id){
+          var cartqntyval = parseInt($('#cartqntyval'+id).html());
+          newVal = cartqntyval-1;
+          if (newVal >= 1) $("#cartqntyval"+id).html(newVal);
+          if (newVal >= 1) manageproduct(id,newVal);
+          showcartproduct();
+        }
+
+        function manageproduct(id,quantity){
+            $.ajax({
+                url : "api/manageproduct",
+                type : "POST",
+                data : {id: id, quantity: quantity},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 <?php } ?>

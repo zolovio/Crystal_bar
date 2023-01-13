@@ -19,3 +19,33 @@
 
     <!-- Custom JS -->
     <script src="assets/js/app.js"></script>
+
+            <script>
+            function showcartproduct(){
+                $.ajax({
+                    url : "api/showcartproduct",
+                    type : "POST",
+                    success : function(data){
+                        $("#cartallproduct").html(data);
+                    }
+                });
+            }
+            showcartproduct();
+
+
+        loadTable();
+        function loadTable(){
+          $.ajax({
+            url : "api/countcart",
+            type : "POST",
+            success : function(data){
+              $("#cartcount").html(data);
+              if (data==-1) {
+                $("#cartcount").html('0');
+              }else{
+                $("#cartcount").show();
+              }
+            }
+          });
+        }
+        </script>

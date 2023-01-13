@@ -120,6 +120,11 @@ header("location:login");
   }
   </style>
 <body>
+    <div id="loader1">
+      <div id="loader2">
+        <div class="loader"></div>
+      </div>
+    </div>
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- Header -->
@@ -152,28 +157,26 @@ header("location:login");
                                 <form>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name</label>
-                                        <input type="text" class="form-control"  required>
+                                        <input type="text" id="name" class="form-control">
                                         
                                       </div>
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Mobile</label>
-                                        <input type="number" class="form-control" >
+                                        <input type="number" id="number" class="form-control" >
                                         
                                       </div>
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control">
+                                        <input type="email" id="email" class="form-control">
                                      
                                       </div>
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Address</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" id="address" class="form-control" >
                                         
                                       </div>
                                   
-                                    
-                                   
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" id="billBtn" class="btn btn-primary">Submit</button>
                                   </form>
                                 <div class="profile-basic d-none">
                                     <div class="row align-items-center">
@@ -341,6 +344,37 @@ header("location:login");
     <!-- /Main Wrapper -->
     
     <?php require_once('footer.php'); ?>
+    <script>
+      $('#billBtn').on('click',function(e){
+        e.preventDefault();
+        var name = $('#name').val();
+        var number = $('#number').val();
+        var email = $('#email').val();
+        var address = $('#address').val();
+
+        $.ajax({
+            url : "api/billgenerate",
+            type : "POST",
+            data: {name: name, number: number, email: email, address: address},
+            cache: false,
+            dataType: 'JSON',
+            beforeSend: function () {
+                $("#loader1").show();
+            },
+            success : function(data){
+                if(data.status == 0){
+                   alert('Something error, try after sometime');
+                }
+                if(data.status == 1){
+                    location.href = 'quationview?id=0000'+data.userdata+'0000';
+                }
+            },
+            complete: function () {
+                $("#loader1").hide();
+            }
+        });
+      })
+    </script>
 </body>
 </html>
 <?php } ?>

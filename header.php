@@ -30,167 +30,8 @@
             
             <!-- Header Right Menu -->
             <ul class="nav user-menu float-right">
-                <li class="nav-item dropdown d-none d-sm-block">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span class="badge badge-pill bg-danger float-right">1</span>
-                    </a>
-                    <div class="dropdown-menu notifications">
-                        <div class="topnav-dropdown-header">
-                            <span>Cart</span>
-                        </div>
-                        <div class="drop-scroll">
-                            <ul class="notification-list">
-                              
-                                <li class="notification-message">
-                                 
-                                        <div class="media">
-                                            <div class="table-responsive border">
-                                                <table class="table table-striped custom-table mb-0">
-                                                   
-                                                    <tbody>
-                                                      
-                                                        <tr>
-                                                            <td class="text-left">samosa</td>
-                                                            <td>2</td>
-                                                            <td><span class="text-success">₹ </span> 34.00</td>
-                                                            <td class="d-flex align-items-center">
-                                                                <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                                         
-                                                        </tr>
-                                                      
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                  
-                                </li>
-                                <li class="notification-message">
-                                 
-                                    <div class="media">
-                                        <div class="table-responsive border">
-                                            <table class="table table-striped custom-table mb-0">
-                                               
-                                                <tbody>
-                                                  
-                                                    <tr>
-                                                        <td class="text-left">samosa</td>
-                                                        <td>2</td>
-                                                        <td><span class="text-success">₹ </span> 34.00</td>
-                                                        <td class="d-flex align-items-center">
-                                                            <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                                     
-                                                    </tr>
-                                                  
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                              
-                            </li>
-                            <li class="notification-message">
-                                 
-                                <div class="media">
-                                    <div class="table-responsive border">
-                                        <table class="table table-striped custom-table mb-0">
-                                           
-                                            <tbody>
-                                              
-                                                <tr>
-                                                    <td class="text-left">samosa</td>
-                                                    <td>2</td>
-                                                    <td><span class="text-success">₹ </span> 34.00</td>
-                                                    <td class="d-flex align-items-center">
-                                                        <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                                 
-                                                </tr>
-                                              
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                          
-                        </li>
-                        <li class="notification-message">
-                                 
-                            <div class="media">
-                                <div class="table-responsive border">
-                                    <table class="table table-striped custom-table mb-0">
-                                       
-                                        <tbody>
-                                          
-                                            <tr>
-                                                <td class="text-left">samosa</td>
-                                                <td>2</td>
-                                                <td><span class="text-success">₹ </span> 34.00</td>
-                                                <td class="d-flex align-items-center">
-                                                    <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                             
-                                            </tr>
-                                          
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                      
-                    </li>
-                    <li class="notification-message">
-                                 
-                        <div class="media">
-                            <div class="table-responsive border">
-                                <table class="table table-striped custom-table mb-0">
-                                   
-                                    <tbody>
-                                      
-                                        <tr>
-                                            <td class="text-left">samosa</td>
-                                            <td>2</td>
-                                            <td><span class="text-success">₹ </span> 34.00</td>
-                                            <td class="d-flex align-items-center">
-                                                <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                         
-                                        </tr>
-                                      
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                  
-                </li>
-                <li class="notification-message">
-                                 
-                    <div class="media">
-                        <div class="table-responsive border">
-                            <table class="table table-striped custom-table mb-0">
-                               
-                                <tbody>
-                                  
-                                    <tr>
-                                        <td class="text-left">samosa</td>
-                                        <td>2</td>
-                                        <td><span class="text-success">₹ </span> 34.00</td>
-                                        <td class="d-flex align-items-center">
-                                            <i class="fas fa-plus ms-2"></i> <span class="mx-2 border p-2"> 1 </span><i class="fa fa-minus ml-1" ></i><i class="fa fa-trash ml-3 border text-danger p-2" aria-hidden="true"></i></td>
-                                     
-                                    </tr>
-                                  
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-              
-            </li>
-                            </ul>
-                        </div>
-                        <div class="topnav-dropdown-footer " style="height: 50px;">
-                         
-                         
- 
-                            <a href="bill-generate" class="btn btn-primary mt-1 text-white">Create Bill</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item dropdown has-arrow">
+
+                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="ad-text">Crystal Bar and Restaurant</span>
                         <span class="user-img">
@@ -199,11 +40,35 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="profile">My Profile</a>
-                        <!-- <a class="dropdown-item" href="edit-profile">Edit Profile</a> -->
-                        <!-- <a class="dropdown-item" href="settings">Settings</a> -->
                         <a class="dropdown-item" href="login">Logout</a>
                     </div>
                 </li>
+                <li class="nav-item mr-2 mt-2">
+                    <a href="javascript:void(0);" onclick="opennav();"><i class="fa fa-shopping-cart"></i><span class="cartcount" id="cartcount"></span></a>
+                    <div class="showcart" id="mynav">
+                      <!-- <p>Showing cart details</p> -->
+                      <div class="cartallproduct" id="cartallproduct"></div>
+
+                      <div class="cheackout">
+                        <a href="bill-generate" class="btn btn-primary rounded"><i class="fa fa-file" aria-hidden="true"></i> Create Bill</a>
+                      </div>                                                          
+                    </div>
+                </li>
+
             </ul>
             <!-- /Header Right Menu -->
         </div>
+
+<script>
+    const opennav = () =>{
+    showcartproduct();
+        var x = document.getElementById("mynav");
+        if (x.style.width === "300px") {
+            x.style.width = "0px";
+        } else {
+            x.style.width = "300px";
+        }
+    }
+
+
+</script>
