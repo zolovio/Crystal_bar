@@ -14,7 +14,9 @@
   $address = mysqli_real_escape_string($con,@$_POST['address']);
   $address = htmlentities($address);
 
-  $netamount = 123;
+  $netprice = mysqli_real_escape_string($con,@$_POST['netprice']);
+  $netprice = htmlentities($netprice);
+
 
   $squery = "select * from bills order by 1 desc";
   $runs = mysqli_query($con,$squery);
@@ -26,18 +28,19 @@
   }
 
   $billid = "QTN".date("Y").$lid;
-  $time = time();
 
-  $query2="INSERT INTO bills (bill_id,name,mobile,email,address,total,time,status) value ('$billid','$name','$number','$email','$address','$netamount','$time',1)";
+
+  $query2="INSERT INTO bills (bill_id,name,mobile,email,address,total,status) value ('$billid','$name','$number','$email','$address','$netprice',1)";
 
     if(mysqli_query($con,$query2)){
       $query3 ="select * from cart order by 1 desc";
       $run3 = mysqli_query($con,$query3);
       while($row3 = mysqli_fetch_array($run3)){
         $product_id = $row3['product_id'];
+        $cat_id = $row3['cat_id'];
         $quantity = $row3['quantity'];
 
-        $query4="insert into billproduct (bill_id,product_id,quantity) values ('$billid','$product_id','$quantity')";
+        $query4="insert into billproduct (bill_id,product_id,cat_id,quantity) values ('$billid','$product_id','$cat_id','$quantity')";
         mysqli_query($con,$query4);
         
         $query5 = "TRUNCATE TABLE cart";

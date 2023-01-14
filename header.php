@@ -49,7 +49,7 @@
                       <!-- <p>Showing cart details</p> -->
                       <div class="cartallproduct" id="cartallproduct"></div>
 
-                      <div class="cheackout">
+                      <div class="cheackout" style="display: none;" id="createbill">
                         <a href="bill-generate" class="btn btn-primary rounded"><i class="fa fa-file" aria-hidden="true"></i> Create Bill</a>
                       </div>                                                          
                     </div>
@@ -61,12 +61,13 @@
 
 <script>
     const opennav = () =>{
-    showcartproduct();
+
         var x = document.getElementById("mynav");
         if (x.style.width === "300px") {
             x.style.width = "0px";
         } else {
             x.style.width = "300px";
+            showcartproduct();
         }
     }
 

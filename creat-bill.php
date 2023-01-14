@@ -111,38 +111,79 @@ header("location:login");
             showproduct2(arr);
         });
 
-        function addqnty(id){
-            var cartqntyval = parseInt($('#cartqntyval'+id).html());
-            newVal = cartqntyval+1;
-            $("#cartqntyval"+id).html(newVal);
-            manageproduct(id,newVal);
-            showcartproduct();
+        function addqnty(id,catid){
+            var qnt = parseInt($('#qnt'+id).html());
+            var cartqntyvalue = parseInt($('#cartqntyvalue'+id).html());
+            newVal = cartqntyvalue + 1;
+            if (qnt >= 1) {
+                $("#qnt"+id).html(qnt-1);
+                $("#cartqntyvalue"+id).html(newVal);
+                manageproduct(id,newVal,catid);
+                updateProduct(id,1);
+            }
         }
 
-        function cartminus(id){
-          var cartqntyval = parseInt($('#cartqntyval'+id).html());
-          newVal = cartqntyval-1;
-          if (newVal >= 1) $("#cartqntyval"+id).html(newVal);
-          if (newVal >= 1) manageproduct(id,newVal);
-          showcartproduct();
+        function cartminus(id,catid){
+            var qnt = parseInt($('#qnt'+id).html());
+            var cartqntyvalue = parseInt($('#cartqntyvalue'+id).html());
+            newVal = cartqntyvalue - 1;
+            if(newVal >= 1){
+                $("#cartqntyvalue"+id).html(newVal);
+                $("#qnt"+id).html(qnt+1);
+                manageproduct(id,newVal,catid);
+                updateProduct(id,0);
+            }
         }
 
-        function manageproduct(id,quantity){
+        function manageproduct(id,quantity,catid){
             $.ajax({
                 url : "api/manageproduct",
+                type : "POST",
+                data : {id: id, quantity: quantity, catid: catid},
+                cache: false,
+                beforeSend: function () {
+                    //$("#loader1").show();
+                },
+                success : function(data){
+                    loadCart();
+                },
+                complete: function () {
+                    //$("#loader1").hide();
+                }
+            });
+        }
+
+        function updateProduct(id,quantity){
+            $.ajax({
+                url : "api/updateproduct",
                 type : "POST",
                 data : {id: id, quantity: quantity},
                 cache: false,
                 beforeSend: function () {
-                    $("#loader1").show();
+                    //$("#loader1").show();
                 },
                 success : function(data){
-                    
+
                 },
                 complete: function () {
-                    $("#loader1").hide();
+                    //$("#loader1").hide();
                 }
             });
+        }
+
+        function loadCart(){
+          $.ajax({
+            url : "api/countcart",
+            type : "POST",
+            success : function(data){
+              $("#cartcount").html(data);
+              if (data==-1) {
+                $("#cartcount").html('0');
+              }else{
+                $("#cartcount").show();
+              }
+            }
+          });
         }
     </script>
 </body>

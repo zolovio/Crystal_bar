@@ -26,11 +26,15 @@
                     url : "api/showcartproduct",
                     type : "POST",
                     success : function(data){
-                        $("#cartallproduct").html(data);
+                        if(data){
+                            $("#cartallproduct").html(data);
+                            $('#createbill').css('display','block');
+                        }
+                        
                     }
                 });
             }
-            showcartproduct();
+            
 
 
         loadTable();
@@ -48,4 +52,54 @@
             }
           });
         }
+
+
+        function deleteitem(id,quantity){
+            $.ajax({
+                url : "api/deletecart",
+                type : "POST",
+                data: {id: id, quantity: quantity},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    showcartproduct();
+                    loadTable();
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+
         </script>
+
+<script type="text/javascript">
+var path = window.location.pathname;
+var page = path.split("/").pop();
+if(page == 'index'){
+    $('#index').addClass('active');
+}
+if(page == 'creat-bill'){
+    $('#creat-bill').addClass('active');
+}
+if(page == 'view-bill'){
+    $('#creat-bill').addClass('active');
+}
+if(page == 'view-sattlment'){
+    $('#creat-bill').addClass('active');
+}
+if(page == 'manage-inventry'){
+    $('#manage-inventry').addClass('active');
+}
+if(page == 'add-product'){
+    $('#manage-inventry').addClass('active');
+}
+
+
+if(page == 'settings'){
+    $('#settings').addClass('active');
+}
+console.log( page );
+</script>

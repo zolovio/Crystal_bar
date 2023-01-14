@@ -7547,3 +7547,7 @@ blockquote p {
   -webkit-border-radius: 12px;
 }
 
+
+.catname{
+    font-size: 17px;
+}

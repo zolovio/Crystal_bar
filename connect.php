@@ -7,4 +7,6 @@ $select_db = mysqli_select_db($con, 'crystalbar');
 if (!$select_db){
 	die("Database Selection Failed".mysqli_error($con));
 }
+
+date_default_timezone_set("Asia/Kolkata");
 ?>

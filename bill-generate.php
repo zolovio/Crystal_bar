@@ -246,91 +246,105 @@ header("location:login");
                                 <div class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
                                 <div><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
                             </div>
-                            <div id="invoice-POS">
-    
-                                <center id="top">
-                                  <div class="logo"></div>
-                                  <div class="info"> 
-                                    <h2>Restaurant Logo</h2>
-                                  </div>
-                                </center>
-                                
-                                <div id="mid">
-                                  <div class="info">
-                                    <h2>Contact Info</h2>
-                                    <p> 
-                                        Address : street city, state 0000</br>
-                                        Email   : JohnDoe@gmail.com</br>
-                                        Phone   : 555-555-5555</br>
-                                    </p>
-                                  </div>
-                                </div><!--End Invoice Mid-->
-                                
-                                <div id="bot">
-                                              <div id="table">
-                                                    <table>
-                                                        <tr class="tabletitle">
-                                                            <td class="item"><h2>Item</h2></td>
-                                                            <td class="Hours"><h2>Qty</h2></td>
-                                                            <td class="Rate"><h2>Sub Total</h2></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Communication</p></td>
-                                                            <td class="tableitem"><p class="itemtext">5</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Asset Gathering</p></td>
-                                                            <td class="tableitem"><p class="itemtext">3</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$225.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Design Development</p></td>
-                                                            <td class="tableitem"><p class="itemtext">5</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Animation</p></td>
-                                                            <td class="tableitem"><p class="itemtext">20</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$1500.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Animation Revisions</p></td>
-                                                            <td class="tableitem"><p class="itemtext">10</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$750.00</p></td>
-                                                        </tr>
-                            
-                            
-                                                        <tr class="tabletitle">
-                                                            <td></td>
-                                                            <td class="Rate"><h2>tax</h2></td>
-                                                            <td class="payment"><h2>$419.25</h2></td>
-                                                        </tr>
-                            
-                                                        <tr class="tabletitle">
-                                                            <td></td>
-                                                            <td class="Rate"><h2>Total</h2></td>
-                                                            <td class="payment"><h2>$3,644.25</h2></td>
-                                                        </tr>
-                            
-                                                    </table>
-                                                </div><!--End Table-->
-                            
-                                                <div id="legalcopy">
-                                                    <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
-                                                    </p>
-                        
-                                                    <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
-                                                    </p>
-                                                </div>
-                            
-                                            </div><!--End InvoiceBot-->
-                              </div><!--End Invoice-->
+                            <div class="row justify-content-center text-dark">
+                                <div class="col-md-3 border " style="max-width: 380px;">
+                                    <div class="info text-uppercase text-center">
+                                        <p class="mb-0">Crystal bar and Restaurant</p>
+                                        <p class="mb-0">71 shiva ji marg, husainganj,lko</p>
+                                        <p> mo 98******12 98*******12</p>
+                                    </div>
+                                    <div class="info-2 text-uppercase text-center">
+                                        <p class="mb-0 ">Farzan khan <span><i class="fas fa-mobile-alt"></i> 988787878</span></p>
+                                        <p>24-12-2022 13:07:48 rep <span> no 0231</span> </p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table m-b-0">
+                                            <thead class="">
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Name</th>
+                                                    <th>SL.QTY</th>
+                                                    <th>SL.VALUE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-uppercase">
+                                                
+                                                <?php
+                                                  require_once("connect.php");
+                                                  $query = "SELECT DISTINCT(cat_id) FROM cart";
+                                                  $run = mysqli_query($con, $query);
+                                                    $totalprice = 0;
+                                                    $totaligst = 0;
+                                                    $totalcgst = 0;
+                                                  while ($row = mysqli_fetch_array($run)) {
+                                                    $cat_id = $row['cat_id'];
+
+                                                      $query4 = "SELECT * FROM category WHERE id = '$cat_id'";
+                                                      $run4 = mysqli_query($con, $query4);
+                                                      $row4 = mysqli_fetch_array($run4);
+                                                      $cname = $row4['name'];
+                                                  ?>
+                                                  <tr><td><h3 class="ctgry catname"> <?php echo $cname; ?></h3></td></tr>
+                                                  <?php
+                                                    $query2 = "SELECT * FROM cart WHERE cat_id = '$cat_id'";
+                                                    $run2 = mysqli_query($con, $query2);
+                                                    $sl = 0001;
+                                                    while ($row2 = mysqli_fetch_array($run2)) {
+                                                      $pid = $row2['product_id'];
+                                                      $qnty = $row2['quantity'];
+
+                                                      $query3 = "SELECT * FROM product WHERE id = '$pid'";
+                                                      $run3 = mysqli_query($con, $query3);
+                                                      $row3 = mysqli_fetch_array($run3);
+                                                      $name = $row3['name'];
+                                                      $price = $row3['price'];
+                                                      $gst = $row3['gst'];
+
+                                                      $aprice = $price*$qnty;
+                                                      $totalprice+=$aprice;
+
+                                                      if($gst == 1){
+                                                        $igst = $aprice*0.03;
+                                                        $cgst = $aprice*0.03;
+                                                      }else{
+                                                        $igst = 0;
+                                                        $cgst = 0;
+                                                      }
+                                                      $totaligst+=$igst;
+                                                      $totalcgst+=$cgst;
+
+                                                      $netamount = round($totalprice+$totaligst+$totalcgst);
+                                                    
+                                                ?>
+                                                <tr class="">
+                                                    <td><?php echo $sl; ?></td>
+                                                    <td><?php echo $name; ?></td>
+                                                    <td><?php echo $qnty; ?>.00</td>
+                                                    <td><?php echo $aprice; ?>.00</td>
+                                                </tr>
+                                                <?php $sl++; } ?>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                   <div class="total-qty"></div>
+                                    <div class="total-value">
+                                        <h4 class="mb-0">Total value: <span>RS</span> <?php echo $totalprice; ?>.00 </h4>
+                                        <h4 class="mb-0">Igst - 3% </h4>
+                                        <h4 class="mb-0">Cgst - 3% </h4>
+                                        <h4 class="mt-3">Net value :<span>RS</span> <span id="netprice"><?php echo $netamount; ?></span>.00</h4>
+                                    </div>
+                                    <div class="text-center my-2 mt-0">
+                                        <small>
+                                            Hi <span class="text-uppercase">Name of recipient</span>, I just wanted to drop you a quick note to let you know that we have received your recent payment in respect of invoice [invoice reference number]. Thank you very much. We really appreciate it.</p>
+                                    </div>
+                                    <style>
+
+                                    </style>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -351,11 +365,12 @@ header("location:login");
         var number = $('#number').val();
         var email = $('#email').val();
         var address = $('#address').val();
+        var netprice = $('#netprice').html();
 
         $.ajax({
             url : "api/billgenerate",
             type : "POST",
-            data: {name: name, number: number, email: email, address: address},
+            data: {name: name, number: number, email: email, address: address, netprice: netprice},
             cache: false,
             dataType: 'JSON',
             beforeSend: function () {

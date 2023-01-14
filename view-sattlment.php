@@ -3,7 +3,25 @@ session_start();
 if(!isset($_SESSION["crbadminid"])){
 header("location:login");
 }else{ ?>
-<?php require_once('top.php'); ?>
+<?php 
+require_once('top.php'); 
+    require_once("connect.php");
+  $query1 = "select * from bills where date(time) = current_date";
+  $run1 = mysqli_query($con,$query1);
+  $totalb = mysqli_num_rows($run1);
+
+  $query2 = "select * from bills where week(time)=week(now())";
+  $run2 = mysqli_query($con,$query2);
+  $ws = mysqli_num_rows($run2);
+
+  $query3 = "SELECT * FROM bills WHERE YEAR(time) = YEAR(CURRENT_DATE()) AND MONTH(time) = MONTH(CURRENT_DATE())";
+  $run3 = mysqli_query($con,$query3);
+  $ms = mysqli_num_rows($run3);
+
+  $query4 = "select * from product";
+  $run4 = mysqli_query($con,$query4);
+  $totalproduct = mysqli_num_rows($run4);
+?>
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -34,7 +52,7 @@ header("location:login");
                                 <div class="card dash-widget">
                                     <img src="assets/img/icons/open-box.png" alt="">
                                    
-                                    <h3>60 <span>Qty</span></h3>
+                                    <h3><?php echo $totalb; ?> <span>Qty</span></h3>
                                     <h4>Today's Sales</h4>
                                 </div>
                             </div>
@@ -42,7 +60,7 @@ header("location:login");
                                 <div class="card dash-widget box-2">
                                     <img src="assets/img/icons/delivery.png" alt="">
                                  
-                                    <h3>1 <span>Pkag</span></h3>
+                                    <h3><?php echo $ws; ?> <span>Pkag</span></h3>
                                     <h4>Weekly Sales</h4>
                                 </div>
                             </div>
@@ -50,7 +68,7 @@ header("location:login");
                                 <div class="card dash-widget box-3">
                                     <img src="assets/img/icons/peop-del.png" alt="">
                                   
-                                    <h3>3 <span>Pkag</span></h3>
+                                    <h3><?php echo $ms; ?> <span>Pkag</span></h3>
                                     <h4>Monthly Sales</h4>
                                 </div>
                             </div>
@@ -58,7 +76,7 @@ header("location:login");
                                 <div class="card dash-widget box-4">
                                     <img src="assets/img/icons/rescipt.png" alt="">
                                    
-                                    <h3>4 <span>Pkag</span></h3>
+                                    <h3><?php echo $totalproduct; ?> <span>Pkag</span></h3>
                                     <h4>Total Product's</h4>
                                 </div>
                             </div>
@@ -93,51 +111,30 @@ header("location:login");
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                $list = array();
+                                                $month = date('m');
+                                                $year = date('Y');
+                                                $date = date('d')-1;
+
+                                                for($d=$date; $d>=0; $d--){
+
+                                                    $time = mktime(0, 0, 0, $month, $d, $year);          
+                                                    if(date('m', $time)==$month)       
+                                                        $list[]=date('Y-m-d', $time);
+                                                }
+                                                $sl = 1;
+                                                $nd = $date;
+                                                foreach($list as $k => $v){
+                                            ?>
                                             <tr>
-                                                <td>#1</td>
-                                                <td>12-12-2023</td>
-                                                <td>12:24 P.M</td>
-                                                <td><i class="fa fa-print" aria-hidden="true"></i>
-                                                    <i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                                </td>
-                                               
+                                                <td>#<?php echo $sl; ?></td>
+                                                <td><?php echo $v; ?></td>
+                                                <td>12:00 A.M</td>
+                                                <td><a href="mysattlment?date=<?php echo $nd; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                             </tr>
-                                            <tr>
-                                                <td>#2</td>
-                                                <td>12-12-2023</td>
-                                                <td>12:24 P.M</td>
-                                                <td><i class="fa fa-print" aria-hidden="true"></i>
-                                                    <i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                                </td>
-                                               
-                                            </tr>
-                                            <tr>
-                                                <td>#3</td>
-                                                <td>12-12-2023</td>
-                                                <td>12:24 P.M</td>
-                                                <td><i class="fa fa-print" aria-hidden="true"></i>
-                                                    <i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                                </td>
-                                               
-                                            </tr>
-                                            <tr>
-                                                <td>#4</td>
-                                                <td>12-12-2023</td>
-                                                <td>12:24 P.M</td>
-                                                <td><i class="fa fa-print" aria-hidden="true"></i>
-                                                    <i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                                </td>
-                                               
-                                            </tr>
-                                            <tr>
-                                                <td>#5</td>
-                                                <td>12-12-2023</td>
-                                                <td>12:24 P.M</td>
-                                                <td><i class="fa fa-print" aria-hidden="true"></i>
-                                                    <i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                                </td>
-                                               
-                                            </tr>
+                                            <?php $sl++; $nd--; } ?>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
