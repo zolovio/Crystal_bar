@@ -128,7 +128,7 @@ header("location:login");
                                                 <td>#<?php echo $row5['id']; ?></td>
                                                 <td><?php echo $row5['name']; ?></td>
                                                 <td><span class="text-success">₹ </span> <?php echo $row5['total']; ?></td>
-                                                <td><a href="mybills?id=<?php echo $row5['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                                <td><a href="mybills?id=<?php echo $row5['bill_id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>

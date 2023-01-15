@@ -17,121 +17,43 @@ header("location:login");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-    <!-- Fontawesome CSS --> 
-	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="assets/css/feather.css">
-    
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    
+
+
 </head>
 <style>
-    #invoice-POS {
-    padding: 2mm;
-    margin: 0 auto;
-    width: 44mm;
-    background: #FFF; border:1px solid rgb(233, 233, 233)
-  }
-  #invoice-POS ::selection {
-    background: #f31544;
-    color: #FFF;
-  }
-  #invoice-POS ::moz-selection {
-    background: #f31544;
-    color: #FFF;
-  }
-  #invoice-POS h1 {
-    font-size: 1.5em;
-    color: #222;
-  }
-  #invoice-POS h2 {
-    font-size: 0.9em;
-  }
-  #invoice-POS h3 {
-    font-size: 1.2em;
-    font-weight: 300;
-    line-height: 2em;
-  }
-  #invoice-POS p {
-    font-size: 0.7em;
-    color: #666;
-    line-height: 1.2em;
-  }
-  #invoice-POS #top, #invoice-POS #mid, #invoice-POS #bot {
-    /* Targets all id with 'col-' */
-    border-bottom: 1px solid #EEE;
-  }
-  #invoice-POS #top {
-    min-height: 100px;
-  }
-  #invoice-POS #mid {
-    min-height: 80px;
-  }
-  #invoice-POS #bot {
-    min-height: 50px;
-  }
-  #invoice-POS #top .logo {
-    height: 60px;
-    width: 60px;
-    background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
-    background-size: 60px 60px;
-  }
-  #invoice-POS .clientlogo {
-    float: left;
-    height: 60px;
-    width: 60px;
-    background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-    background-size: 60px 60px;
-    border-radius: 50px;
-  }
-  #invoice-POS .info {
-    display: block;
-    margin-left: 0;
-  }
-  #invoice-POS .title {
-    float: right;
-  }
-  #invoice-POS .title p {
-    text-align: right;
-  }
-  #invoice-POS table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  #invoice-POS .tabletitle {
-    font-size: 0.5em;
-    background: #EEE;
-  }
-  #invoice-POS .service {
-    border-bottom: 1px solid #EEE;
-  }
-  #invoice-POS .item {
-    width: 24mm;
-  }
-  #invoice-POS .itemtext {
-    font-size: 0.5em;
-  }
-  #invoice-POS #legalcopy {
-    margin-top: 5mm;
-  }
-  @media print
-{
-  .button
-  {
-    display: none;
-  }
-}
-  </style>
+    .ctgry::before {
+        content: '*';
+        font-size: 34px;
+        position: relative;
+        top: 0.7rem;
+    }
+
+    .total-qty {
+        text-transform: uppercase;
+        border-top: dotted 2px black;
+
+        margin-top: 1rem;
+    }
+
+    .total-value {
+        text-transform: uppercase;
+        border-bottom: dotted 2px black;
+        padding-bottom: 1.5rem;
+        margin-top: 1rem;
+
+    }
+</style>
+
 <body>
-    <div id="loader1">
-      <div id="loader2">
-        <div class="loader"></div>
-      </div>
-    </div>
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- Header -->
@@ -145,125 +67,179 @@ header("location:login");
         <!-- Page Wrapper -->
         <div class="page-wrapper dashboard-wrap">
             <div class="content container-fluid">
-
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Settlement</h3>
+                        </div>
+                        <!-- <div class="col-auto">
+                            <a href="edit-profile.html" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
                 <div class="card-box">
-
+                   
                     <div class="row my-5 border-top">
                         <div class="col-md-12 my-3">
                             <div>
                                 <div onclick="createPDF()" class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
                                 <div onclick="printbill()" class="print"><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
                             </div>
-                            <div id="invoice-POS">
-    
-                                <center id="top">
-                                  <div class="logo"></div>
-                                  <div class="info"> 
-                                    <h2>Restaurant Logo</h2>
-                                  </div>
-                                </center>
-                                
-                                <div id="mid">
-                                  <div class="info">
-                                    <h2>Contact Info</h2>
-                                    <p> 
-                                        Address : street city, state 0000</br>
-                                        Email   : JohnDoe@gmail.com</br>
-                                        Phone   : 555-555-5555</br>
-                                    </p>
-                                  </div>
-                                </div><!--End Invoice Mid-->
-                                
-                                <div id="bot">
-                                              <div id="table">
-                                                    <table>
-                                                        <tr class="tabletitle">
-                                                            <td class="item"><h2>Item</h2></td>
-                                                            <td class="Hours"><h2>Qty</h2></td>
-                                                            <td class="Rate"><h2>Sub Total</h2></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Communication</p></td>
-                                                            <td class="tableitem"><p class="itemtext">5</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Asset Gathering</p></td>
-                                                            <td class="tableitem"><p class="itemtext">3</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$225.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Design Development</p></td>
-                                                            <td class="tableitem"><p class="itemtext">5</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$375.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Animation</p></td>
-                                                            <td class="tableitem"><p class="itemtext">20</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$1500.00</p></td>
-                                                        </tr>
-                            
-                                                        <tr class="service">
-                                                            <td class="tableitem"><p class="itemtext">Animation Revisions</p></td>
-                                                            <td class="tableitem"><p class="itemtext">10</p></td>
-                                                            <td class="tableitem"><p class="itemtext">$750.00</p></td>
-                                                        </tr>
-                            
-                            
-                                                        <tr class="tabletitle">
-                                                            <td></td>
-                                                            <td class="Rate"><h2>tax</h2></td>
-                                                            <td class="payment"><h2>$419.25</h2></td>
-                                                        </tr>
-                            
-                                                        <tr class="tabletitle">
-                                                            <td></td>
-                                                            <td class="Rate"><h2>Total</h2></td>
-                                                            <td class="payment"><h2>$3,644.25</h2></td>
-                                                        </tr>
-                            
-                                                    </table>
-                                                </div><!--End Table-->
-                            
-                                                <div id="legalcopy">
-                                                    <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
-                                                    </p>
-                        
-                                                    <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
-                                                    </p>
-                                                </div>
-                            
-                                            </div><!--End InvoiceBot-->
-                            </div><!--End Invoice-->
+                            <?php
+                                require_once("connect.php");
+                                $query6 = "SELECT * FROM user WHERE email='admin@gmail.com'";
+                                $run6 = mysqli_query($con, $query6);
+                                $row6 = mysqli_fetch_array($run6);
+                                $dateno = $_GET['date'];
+
+                                $cdate = date('Y-m-').$dateno;
+                                $query = "SELECT * FROM `bills` WHERE date(time) = '$cdate'";
+                                $run = mysqli_query($con,$query);
+                                if(mysqli_num_rows($run) > 0){
+                                while($row = mysqli_fetch_array($run)){
+                                $billid[] = $row['bill_id'];
+                                }
+                                $billid = implode("','",$billid);
+                            ?>
+                            <div class="row justify-content-center text-dark" id="invoicepdf">
+                                <div class="col border " style="max-width: 380px;">
+                                    <div class="info text-uppercase text-center">
+                                        <p class="mb-0"><?php echo $row6['address']; ?></p>
+                                        <p> mo <?php echo $row6['phone']; ?> <?php echo $row6['gst']; ?></p>
+                                    </div>
+                                    <div class="info-2 text-uppercase text-center">
+                                        <p class="mb-0 ">plu sale report </p>
+                                        <p><?php echo date('Y-m-').$dateno; ?> 12:00:00 rep <span> no <?php echo date('Ymd'); ?></span> </p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table m-b-0">
+                                            <thead class="">
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Name</th>
+                                                    <th>SL.QTY</th>
+                                                    <th>SL.VALUE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-uppercase">
+                                                <?php
+ 
+
+                                                    $totalprice = 0;
+                                                    $totaligst = 0;
+                                                    $totalcgst = 0;
+                                                    $totalqnty = 0;
+                                                    $cat_qnty = 0;
+                                                    $cat_total = 0;
+                                                    $query2 = "SELECT DISTINCT(cat_id) FROM billproduct WHERE bill_id IN ('$billid')";
+                                                    $run2 = mysqli_query($con,$query2);
+                                                    while($row2 = mysqli_fetch_array($run2)){
+                                                        $cat_id = $row2['cat_id'];
+
+                                                      $query3 = "SELECT * FROM category WHERE id = '$cat_id'";
+                                                      $run3 = mysqli_query($con, $query3);
+                                                      $row3 = mysqli_fetch_array($run3);
+                                                      $cname = $row3['name'];
+                                                ?>
+                                                <tr><td><h3 class="ctgry catname"><?php echo $cname; ?></h3></td></tr>
+                                                  <?php
+                                                    $query4 = "SELECT * FROM billproduct WHERE cat_id = '$cat_id'";
+                                                    $run4 = mysqli_query($con, $query4);
+                                                    $sl = 0001;
+                                                    while($row4 = mysqli_fetch_array($run4)){
+                                                      $pid = $row4['product_id'];
+                                                      $qnty = $row4['quantity'];
+
+                                                      $query5 = "SELECT * FROM product WHERE id = '$pid'";
+                                                      $run5 = mysqli_query($con, $query5);
+                                                      $row5 = mysqli_fetch_array($run5);
+                                                      $name = $row5['name'];
+                                                      $price = $row5['price'];
+                                                      $gst = $row5['gst'];
+
+                                                      $aprice = $price*$qnty;
+                                                      $totalprice+=$aprice;
+
+                                                      if($gst == 1){
+                                                        $igst = $aprice*0.03;
+                                                        $cgst = $aprice*0.03;
+                                                      }else{
+                                                        $igst = 0;
+                                                        $cgst = 0;
+                                                      }
+                                                      $totaligst+=$igst;
+                                                      $totalcgst+=$cgst;
+                                                      $totalqnty+=$qnty;
+
+                                                      $cat_total += $aprice;
+                                                      $cat_qnty += $qnty;
+
+                                                      $netamount = round($totalprice+$totaligst+$totalcgst);
+                                                ?>
+                                                <tr class="">
+                                                    <td><?php echo $sl; ?></td>
+                                                    <td><?php echo $name; ?></td>
+                                                    <td><?php echo $qnty; ?>.00</td>
+                                                    <td><?php echo $aprice; ?>.00</td>
+                                                </tr>
+
+                                                <?php $sl++; } ?>
+                                                <tr>
+                                                    <td colspan="2">Total Qty :<?php echo $cat_qnty; $cat_qnty = 0;?></td>
+                                                    <td colspan="2">total value:<?php echo $cat_total;  $cat_total = 0;?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="total-qty">
+                                        <h4 class="pt-2">net qty : <?php echo $totalqnty; ?></h4>
+                                    </div>
+                                    <div class="total-value">
+                                        <h4 class="mb-0">total value: <span>RS</span> <?php echo $totalprice; ?>.00 </h4>
+                                        <h4 class="mb-0">igst - 3%</h4>
+                                        <h4 class="mb-0">cgst - 3%</h4>
+                                        <h4 class="mb-0">net value :<span>RS</span> <?php echo $netamount; ?>.00</h4>
+                                    </div>
+                                    <div class="text-center my-2 mt-0">
+                                        Thank you
+                                    </div>
+                                    <style>
+
+                                    </style>
+                                </div>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
-               
-                 
+
+
             </div>
-          
+
         </div>
         <!-- /Page Wrapper -->
     </div>
     <!-- /Main Wrapper -->
-    
+
     <?php require_once('footer.php'); ?>
-    <script src="assets/js/html2pdf.bundle.min.js"></script>
+    
     <script>
       function printbill(){
-        window.print();
+        $.print("#invoicepdf");
       }
 
+      var date = "<?php echo date('Y-m-').$dateno; ?>";
+
       function createPDF() {
-      var element = document.getElementById("invoice-POS");
+      var element = document.getElementById("invoicepdf");
       html2pdf(element, {
         margin: 0.5,
         padding: 0,
-        filename: "quation.pdf",
+        filename: "settlment"+date+".pdf",
         image: { type: "jpeg", quality: 1 },
         html2canvas: { scale: 2, logging: true },
         jsPDF: { unit: "in", format: "A2", orientation: "P" },

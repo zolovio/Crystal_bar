@@ -70,7 +70,7 @@ header("location:login");
                                                 </li>
                                                 <li>
                                                     <span class="title">Alternative Phone:</span>
-                                                    <span class="text"><a href=""><?php echo $row['phone']; ?></a></span>
+                                                    <span class="text"><a href=""><?php echo $row['gst']; ?></a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>

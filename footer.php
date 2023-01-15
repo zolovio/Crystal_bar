@@ -20,6 +20,12 @@
     <!-- Custom JS -->
     <script src="assets/js/app.js"></script>
 
+    <!-- Download PDF JS -->
+    <script src="assets/js/jQuery.print.min.js"></script>
+
+    <!-- Print JS -->
+    <script src="assets/js/html2pdf.bundle.min.js"></script>
+
             <script>
             function showcartproduct(){
                 $.ajax({
