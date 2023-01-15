@@ -43,8 +43,33 @@
                         <a class="dropdown-item" href="login">Logout</a>
                     </div>
                 </li>
+                <li class="nav-item mr-2 mt-2">
+                    <a href="javascript:void(0);" onclick="opennav();"><i class="fa fa-shopping-cart"></i><span class="cartcount" id="cartcount"></span></a>
+                    <div class="showcart" id="mynav">
+                      <!-- <p>Showing cart details</p> -->
+                      <div class="cartallproduct" id="cartallproduct"></div>
 
+                      <div class="cheackout" style="display: none;" id="createbill">
+                        <a href="bill-generate" class="btn btn-primary rounded"><i class="fa fa-file" aria-hidden="true"></i> Create Bill</a>
+                      </div>                                                          
+                    </div>
+                </li>
 
             </ul>
             <!-- /Header Right Menu -->
         </div>
+
+<script>
+    const opennav = () =>{
+
+        var x = document.getElementById("mynav");
+        if (x.style.width === "300px") {
+            x.style.width = "0px";
+        } else {
+            x.style.width = "300px";
+            showcartproduct();
+        }
+    }
+
+
+</script>

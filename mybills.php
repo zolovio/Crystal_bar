@@ -204,7 +204,7 @@ header("location:login");
                                                   ?>
                                                   <tr><td><h3 class="ctgry catname"> <?php echo $cname; ?></h3></td></tr>
                                                   <?php
-                                                    $query2 = "SELECT * FROM billproduct WHERE cat_id = '$cat_id'";
+                                                    $query2 = "SELECT * FROM billproduct WHERE cat_id = '$cat_id' and bill_id = '$bill_id'";
                                                     $run2 = mysqli_query($con, $query2);
                                                     $sl = 0001;
                                                     while ($row2 = mysqli_fetch_array($run2)) {

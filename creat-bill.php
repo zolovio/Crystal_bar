@@ -13,7 +13,7 @@ header("location:login");
     <!-- Main Wrapper -->
     <div class="main-wrapper">
         <!-- Header -->
-            <?php require_once('header.php'); ?>
+            <?php require_once('topbar.php'); ?>
         <!-- /Header -->
         <!-- Sidebar -->
             <?php require_once('sidebar.php'); ?>
@@ -118,6 +118,7 @@ header("location:login");
             if (qnt >= 1) {
                 $("#qnt"+id).html(qnt-1);
                 $("#cartqntyvalue"+id).html(newVal);
+                $("#cartqntyval"+id).html(newVal);
                 manageproduct(id,newVal,catid);
                 updateProduct(id,1);
             }
@@ -129,6 +130,7 @@ header("location:login");
             newVal = cartqntyvalue - 1;
             if(newVal >= 1){
                 $("#cartqntyvalue"+id).html(newVal);
+                $("#cartqntyval"+id).html(newVal);
                 $("#qnt"+id).html(qnt+1);
                 manageproduct(id,newVal,catid);
                 updateProduct(id,0);

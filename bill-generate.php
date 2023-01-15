@@ -381,7 +381,7 @@ header("location:login");
                    alert('Something error, try after sometime');
                 }
                 if(data.status == 1){
-                    location.href = 'quationview?id=0000'+data.userdata+'0000';
+                    location.href = 'mybills?id='+data.userdata;
                 }
             },
             complete: function () {
