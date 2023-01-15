@@ -83,10 +83,6 @@ header("location:login");
                    
                     <div class="row my-5 border-top">
                         <div class="col-md-12 my-3">
-                            <div>
-                                <div onclick="createPDF()" class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
-                                <div onclick="printbill()" class="print"><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
-                            </div>
                             <?php
                                 require_once("connect.php");
                                 $query6 = "SELECT * FROM user WHERE email='admin@gmail.com'";
@@ -103,6 +99,11 @@ header("location:login");
                                 }
                                 $billid = implode("','",$billid);
                             ?>
+                            <div>
+                                <div onclick="createPDF()" class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
+                                <div onclick="printbill()" class="print"><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
+                            </div>
+
                             <div class="row justify-content-center text-dark" id="invoicepdf">
                                 <div class="col border " style="max-width: 380px;">
                                     <div class="info text-uppercase text-center">
@@ -212,6 +213,8 @@ header("location:login");
                                     </style>
                                 </div>
                             </div>
+                            <?php }else{ ?>
+                                <p>No Record Found (Try after 12:00 AM)</p>
                             <?php } ?>
                         </div>
                     </div>

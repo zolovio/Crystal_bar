@@ -178,33 +178,7 @@ header("location:login");
                                   
                                     <button type="submit" id="billBtn" class="btn btn-primary">Submit</button>
                                   </form>
-                                <div class="profile-basic d-none">
-                                    <div class="row align-items-center">
-                                       
-                                        <div class="col-md-12">
-                                            <ul class="personal-info">
-                                                <li>
-                                                    <span class="title">Name:</span>
-                                                    <span class="text"><a href="">Farzan</a></span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Phone:</span>
-                                                    <span class="text"><a href="">9876543210</a></span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Email:</span>
-                                                    <span class="text"><a href="">johndoe@example.com</a></span>
-                                                </li>
-                                              
-                                                <li>
-                                                    <span class="title">Address:</span>
-                                                    <span class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</span>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+ 
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -217,20 +191,20 @@ header("location:login");
                                             <ul class="personal-info">
                                                 <li>
                                                     <span class="title">Name:</span>
-                                                    <span class="text"><a href="">Farzan</a></span>
+                                                    <span class="text"><a href="" id="fullname">Full name</a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Phone:</span>
-                                                    <span class="text"><a href="">9876543210</a></span>
+                                                    <span class="text"><a href="" id="contactno">Contact Number</a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>
-                                                    <span class="text"><a href="">johndoe@example.com</a></span>
+                                                    <span class="text"><a href="" id="emailaddress">Email address</a></span>
                                                 </li>
                                               
                                                 <li>
                                                     <span class="title">Address:</span>
-                                                    <span class="text">1861 Bayonne Ave, Manchester Township, NJ, 08759</span>
+                                                    <span class="text" id="fulladdress">Full address</span>
                                                 </li>
                                                 
                                             </ul>
@@ -243,18 +217,23 @@ header("location:login");
                     <div class="row my-5 border-top">
                         <div class="col-md-12 my-3">
                             <div>
-                                <div class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
-                                <div><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
+                                <div onclick="createPDF()" class="mx-auto"><i class="fa fa-download" aria-hidden="true"></i> <small>Download</small></div>
+                                <div onclick="printbill()"><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
                             </div>
-                            <div class="row justify-content-center text-dark">
+                            <?php
+                                require_once("connect.php");
+                                $query6 = "SELECT * FROM user WHERE email='admin@gmail.com'";
+                                $run6 = mysqli_query($con, $query6);
+                                $row6 = mysqli_fetch_array($run6);
+                            ?>
+                            <div class="row justify-content-center text-dark" id="invoicepdf">
                                 <div class="col-md-3 border " style="max-width: 380px;">
                                     <div class="info text-uppercase text-center">
-                                        <p class="mb-0">Crystal bar and Restaurant</p>
-                                        <p class="mb-0">71 shiva ji marg, husainganj,lko</p>
-                                        <p> mo 98******12 98*******12</p>
+                                        <p class="mb-0"><?php echo $row6['address']; ?></p>
+                                        <p> mo <?php echo $row6['phone']; ?> <?php echo $row6['gst']; ?></p>
                                     </div>
                                     <div class="info-2 text-uppercase text-center">
-                                        <p class="mb-0 ">Farzan khan <span><i class="fas fa-mobile-alt"></i> 988787878</span></p>
+                                        <p class="mb-0 "><span id="fullname1">Full Name</span> <span><i class="fas fa-mobile-alt"></i> <span id="contctno1">Contact Number</span></span></p>
                                         <p>24-12-2022 13:07:48 rep <span> no 0231</span> </p>
                                     </div>
                                     <div class="table-responsive">
@@ -270,7 +249,6 @@ header("location:login");
                                             <tbody class="text-uppercase">
                                                 
                                                 <?php
-                                                  require_once("connect.php");
                                                   $query = "SELECT DISTINCT(cat_id) FROM cart";
                                                   $run = mysqli_query($con, $query);
                                                     $totalprice = 0;
@@ -359,6 +337,25 @@ header("location:login");
     
     <?php require_once('footer.php'); ?>
     <script>
+
+      $("#name").keyup(function(){
+        $("#fullname").html($('#name').val());
+        $('#fullname1').html($('#name').val());
+      });
+
+      $("#number").keyup(function(){
+        $("#contactno").html($('#number').val());
+        $('#contctno1').html($('#number').val());
+      });
+
+      $("#email").keyup(function(){
+        $("#emailaddress").html($('#email').val());
+      });
+
+      $("#address").keyup(function(){
+        $("#fulladdress").html($('#address').val());
+      });
+
       $('#billBtn').on('click',function(e){
         e.preventDefault();
         var name = $('#name').val();
@@ -390,6 +387,27 @@ header("location:login");
         });
       })
     </script>
+
+    <script>
+      function printbill(){
+        $.print("#invoicepdf");
+      }
+
+      var date = "<?php echo date('Y-m-d'); ?>";
+      function createPDF() {
+      var element = document.getElementById("invoicepdf");
+      html2pdf(element, {
+        margin: 0.5,
+        padding: 0,
+        filename: "bill"+date+".pdf",
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 2, logging: true },
+        jsPDF: { unit: "in", format: "A2", orientation: "P" },
+        class: createPDF,
+      });
+    }
+    </script>
+
 </body>
 </html>
 <?php } ?>
