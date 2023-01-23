@@ -187,6 +187,80 @@ header("location:login");
             }
           });
         }
+
+            function showcartproduct(){
+                $.ajax({
+                    url : "api/showcartproduct",
+                    type : "POST",
+                    success : function(data){
+                        if(data){
+                            $("#cartallproduct").html(data);
+                            $('#createbill').css('display','block');
+                        }else{
+                            $("#cartallproduct").html('');
+                            $('#createbill').css('display','none');
+                        }
+                        
+                    }
+                });
+            }
+
+        loadTable();
+        function loadTable(){
+          $.ajax({
+            url : "api/countcart",
+            type : "POST",
+            success : function(data){
+              $("#cartcount").html(data);
+              if (data==-1) {
+                $("#cartcount").html('0');
+              }else{
+                $("#cartcount").show();
+              }
+            }
+          });
+        }
+
+        function showproduct3(){
+            $.ajax({
+                url : "api/getproductlist",
+                type : "POST",
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    if(data){
+                        $("#product").html(data);
+                    }
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+
+
+        function deleteitem(id,quantity){
+            $.ajax({
+                url : "api/deletecart",
+                type : "POST",
+                data: {id: id, quantity: quantity},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success : function(data){
+                    showcartproduct();
+                    loadTable();
+                    showproduct3();
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        }
+
     </script>
 </body>
 </html>

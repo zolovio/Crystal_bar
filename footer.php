@@ -27,57 +27,11 @@
     <script src="assets/js/html2pdf.bundle.min.js"></script>
 
             <script>
-            function showcartproduct(){
-                $.ajax({
-                    url : "api/showcartproduct",
-                    type : "POST",
-                    success : function(data){
-                        if(data){
-                            $("#cartallproduct").html(data);
-                            $('#createbill').css('display','block');
-                        }
-                        
-                    }
-                });
-            }
+
             
 
 
-        loadTable();
-        function loadTable(){
-          $.ajax({
-            url : "api/countcart",
-            type : "POST",
-            success : function(data){
-              $("#cartcount").html(data);
-              if (data==-1) {
-                $("#cartcount").html('0');
-              }else{
-                $("#cartcount").show();
-              }
-            }
-          });
-        }
 
-
-        function deleteitem(id,quantity){
-            $.ajax({
-                url : "api/deletecart",
-                type : "POST",
-                data: {id: id, quantity: quantity},
-                cache: false,
-                beforeSend: function () {
-                    $("#loader1").show();
-                },
-                success : function(data){
-                    showcartproduct();
-                    loadTable();
-                },
-                complete: function () {
-                    $("#loader1").hide();
-                }
-            });
-        }
 
         </script>
 
@@ -102,10 +56,14 @@ if(page == 'manage-inventry'){
 if(page == 'add-product'){
     $('#manage-inventry').addClass('active');
 }
-
-
 if(page == 'settings'){
     $('#settings').addClass('active');
 }
+if(page == 'waiter'){
+    $('#waiter').addClass('active');
+}
+$('#search').on('click',function(){
+    location.href = 'search';
+});
 console.log( page );
 </script>

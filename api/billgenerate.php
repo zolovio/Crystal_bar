@@ -17,6 +17,8 @@
   $netprice = mysqli_real_escape_string($con,@$_POST['netprice']);
   $netprice = htmlentities($netprice);
 
+  $category = mysqli_real_escape_string($con,@$_POST['category']);
+  $category = htmlentities($category);
 
   $squery = "select * from bills order by 1 desc";
   $runs = mysqli_query($con,$squery);
@@ -30,7 +32,7 @@
   $billid = "QTN".date("Y").$lid;
 
 
-  $query2="INSERT INTO bills (bill_id,name,mobile,email,address,total,status) value ('$billid','$name','$number','$email','$address','$netprice',1)";
+  $query2="INSERT INTO bills (bill_id,name,mobile,email,address,total,waiter,status) value ('$billid','$name','$number','$email','$address','$netprice','$category',1)";
 
     if(mysqli_query($con,$query2)){
       $query3 ="select * from cart order by 1 desc";

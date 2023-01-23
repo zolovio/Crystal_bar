@@ -175,6 +175,7 @@ header("location:login");
                                     <div class="info-2 text-uppercase text-center">
                                         <p class="mb-0 "><?php echo $row7['name']; ?> <span><i class="fas fa-mobile-alt"></i> <?php echo $row7['mobile']; ?></span></p>
                                         <p><?php echo $row7['time']; ?> rep <span> no <?php echo $row7['bill_id']; ?></span> </p>
+                                        <p>Waiter: <span id="waitername"><?php echo @$row7['waiter']; ?></span></p>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table m-b-0">

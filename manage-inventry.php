@@ -26,6 +26,7 @@ header("location:login");
             <div class="content container-fluid">
                 <div class="page-header">
                     <div class="row align-items-center">
+
                         <div class="col">
                             <h3 class="page-title">Manage Inventory</h3>
                         </div>

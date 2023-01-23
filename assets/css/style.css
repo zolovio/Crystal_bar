@@ -7551,3 +7551,17 @@ blockquote p {
 .catname{
     font-size: 17px;
 }
+
+.lock{
+    width: 100%;
+    padding: 15px 2.5%;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+@media (min-width: 750px) {
+    .lock{
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 15%;
+    }
+}

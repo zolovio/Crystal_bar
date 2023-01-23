@@ -173,9 +173,23 @@ header("location:login");
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Address</label>
                                         <input type="text" id="address" class="form-control" >
-                                        
                                       </div>
-                                  
+
+                                      <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Waiter</label>
+                                        <select class="form-control" id="category" required="">
+                                            <option value="" disabled="" selected="">---Select---</option>
+                                            <?php
+                                                require_once("connect.php");
+                                                $query2 = "SELECT * FROM waiter";
+                                                $run2 = mysqli_query($con, $query2);
+                                                while($row2 = mysqli_fetch_array($run2)){
+                                            ?>
+                                                <option value="<?php echo $row2['name']; ?>"><?php echo $row2['name']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                      </div>
+
                                     <button type="submit" id="billBtn" class="btn btn-primary">Submit</button>
                                   </form>
  
@@ -221,7 +235,6 @@ header("location:login");
                                 <div onclick="printbill()"><i class="fa fa-print" aria-hidden="true"></i> <small>Print</small></div>
                             </div>
                             <?php
-                                require_once("connect.php");
                                 $query6 = "SELECT * FROM user WHERE email='admin@gmail.com'";
                                 $run6 = mysqli_query($con, $query6);
                                 $row6 = mysqli_fetch_array($run6);
@@ -235,6 +248,8 @@ header("location:login");
                                     <div class="info-2 text-uppercase text-center">
                                         <p class="mb-0 "><span id="fullname1">Full Name</span> <span><i class="fas fa-mobile-alt"></i> <span id="contctno1">Contact Number</span></span></p>
                                         <p>24-12-2022 13:07:48 rep <span> no 0231</span> </p>
+
+                                        <p>Waiter: <span id="waitername">Full name</span></p>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table m-b-0">
@@ -355,6 +370,9 @@ header("location:login");
       $("#address").keyup(function(){
         $("#fulladdress").html($('#address').val());
       });
+      $("#category").change(function(){
+        $('#waitername').html($('#category').val());
+      });
 
       $('#billBtn').on('click',function(e){
         e.preventDefault();
@@ -363,11 +381,12 @@ header("location:login");
         var email = $('#email').val();
         var address = $('#address').val();
         var netprice = $('#netprice').html();
+        var category = $('#category').val();
 
         $.ajax({
             url : "api/billgenerate",
             type : "POST",
-            data: {name: name, number: number, email: email, address: address, netprice: netprice},
+            data: {name: name, number: number, email: email, address: address, netprice: netprice, category: category},
             cache: false,
             dataType: 'JSON',
             beforeSend: function () {

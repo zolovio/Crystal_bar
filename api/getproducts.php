@@ -46,27 +46,11 @@
                                 <td>
                                     <div>
                                         <p>
-                                            <a class="btn btn-light" data-toggle="collapse"
-                                                href="#collapseExample" role="button" aria-expanded="false"
-                                                aria-controls="collapseExample">
-                                                <?php echo $quantity; ?>
-                                            </a>
-                                        </p>
-                                        <div class="collapse mx-auto w-25" id="collapseExample">
-                                            <div class="card card-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control"
-                                                            id="exampleInputEmail1"
-                                                            aria-describedby="emailHelp" />
-                                                    </div>
 
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
+                                                <?php echo $quantity; ?>
+                                            
+                                        </p>
+
                                     </div>
                                 </td>
                                 <td><?php echo $cname; ?></td>

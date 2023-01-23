@@ -28,7 +28,19 @@ require_once('top.php');
         <!-- Header -->
             <?php require_once('header.php'); ?>
         <!-- /Header -->
-
+<div id="modal">
+  <div id="modal-form">
+    <h2>Message !!</h2>
+    <p id="pm"></p>
+    <div id="close-btn">OK</div>
+    <div id="right-btn"><i class="fa fa-check"></i></div>
+  </div>
+</div>
+<div id="loader1">
+  <div id="loader2">
+    <div class="loader"></div>
+  </div>
+</div>
         <!-- Sidebar -->
             <?php require_once('sidebar.php'); ?>
         <!-- /Sidebar -->
@@ -36,113 +48,23 @@ require_once('top.php');
         <!-- Page Wrapper -->
         <div class="page-wrapper dashboard-wrap">
 
-            <div class="content container-fluid">
-                <!-- Sales Dashboard -->
-                <div class="row">
-                    <div class="col-xl-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="page-title">Sales Activity</h3>
-                                </div>
-                            </div>
+            <div class="content container-fluid" id="homepage">
+
+                <div class="lock">
+                    <h4 class="text-center py-2">Please enter passcord to see</h4>
+                    <form id="settelForm">
+                        <div class="form-group">
+                        
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Passcode</label>
+                          <input type="text" class="form-control" id="passcode" name="passcode" placeholder="Please enter passcode">
                         </div>
-                        <div class="row sales-dashboard">
-                            <div class="col-xl-3 col-sm-6 col-12">
-                                <div class="card dash-widget">
-                                    <img src="assets/img/icons/open-box.png" alt="">
-                                   
-                                    <h3><?php echo $totalb; ?> <span>Qty</span></h3>
-                                    <h4>Today's Sales</h4>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 col-12">
-                                <div class="card dash-widget box-2">
-                                    <img src="assets/img/icons/delivery.png" alt="">
-                                 
-                                    <h3><?php echo $ws; ?> <span>Pkag</span></h3>
-                                    <h4>Weekly Sales</h4>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 col-12">
-                                <div class="card dash-widget box-3">
-                                    <img src="assets/img/icons/peop-del.png" alt="">
-                                  
-                                    <h3><?php echo $ms; ?> <span>Pkag</span></h3>
-                                    <h4>Monthly Sales</h4>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6 col-12">
-                                <div class="card dash-widget box-4">
-                                    <img src="assets/img/icons/rescipt.png" alt="">
-                                   
-                                    <h3><?php echo $totalproduct; ?> <span>Pkag</span></h3>
-                                    <h4>Total Product's</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <span id="error"></span>
+                        <button id="homeBtn" type="submit" class="btn btn-primary btn-block">Next</button>
+                    </form>
                 </div>
-                <!-- /Sales Dashboard -->
 
-                <!-- Profit Chart -->
-                <div class="row pro-chart">
-                    
-                    <div class="col-xl-12 col-sm-12 d-flex">
-                        <div class="card card-table card-table-top flex-fill">
-                            <div class="card-header">
-                                <h4 class="card-title m-b-0 float-left"> Settlement</h4>
-                                <a href="" class="nav-link dropdown-toggle float-right p-0 d-none" data-toggle="dropdown" aria-expanded="false">This Month </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:void(0)">Active</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">Inactive</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive sales-table">	
-                                    <table class="table custom-table table-nowrap mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>S No</th>
-                                                <th>Settlement Date</th>
-                                                <th>Settlement Time</th>
-                                                <th>Action</th>
-                                               
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                                $list = array();
-                                                $month = date('m');
-                                                $year = date('Y');
-                                                $date = date('d')-1;
 
-                                                for($d=$date; $d>=0; $d--){
-
-                                                    $time = mktime(0, 0, 0, $month, $d, $year);          
-                                                    if(date('m', $time)==$month)       
-                                                        $list[]=date('Y-m-d', $time);
-                                                }
-                                                $sl = 1;
-                                                $nd = $date;
-                                                foreach($list as $k => $v){
-                                            ?>
-                                            <tr>
-                                                <td>#<?php echo $sl; ?></td>
-                                                <td><?php echo $v; ?></td>
-                                                <td>12:00 A.M</td>
-                                                <td><a href="mysattlment?date=<?php echo $nd; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                            </tr>
-                                            <?php $sl++; $nd--; } ?>
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Profit Chart -->
                 
             </div>
             <!-- Page Wrapper -->
@@ -151,6 +73,37 @@ require_once('top.php');
     </div>
 
     <?php require_once('footer.php'); ?>
+    <script>
+        $('#settelForm').on('submit',function(e){
+            e.preventDefault();
+
+            var passcode = $('#passcode').val();
+            $.ajax({
+                url : "api/settelmentpage",
+                type : "POST",
+                data : {passcode: passcode},
+                cache: false,
+                beforeSend: function () {
+                    $("#loader1").show();
+                },
+                success: function(data){
+                    
+                    if(data == 2){
+                        $("#modal").show();
+                        $("#pm").html("Wrong pascode");
+                    }else{
+                        $('#homepage').html(data);
+                    }
+                },
+                complete: function () {
+                    $("#loader1").hide();
+                }
+            });
+        });
+        $("#close-btn").on("click",function(){
+            $("#modal").hide();
+        });
+    </script>
 </body>
 </html>
 <?php } ?>

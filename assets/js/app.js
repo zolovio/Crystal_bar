@@ -675,7 +675,7 @@ Version      : 1.1
 		  	xaxis: {
 				type: 'datetime',
 				min: new Date('01 Mar 2012').getTime(),
-				tickAmount: 6,
+				tickAmount: 12,
 		  	},
 		  	tooltip: {
 				x: {

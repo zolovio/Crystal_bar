@@ -105,7 +105,7 @@ header("location:login");
                             </div>
 
                             <div class="row justify-content-center text-dark" id="invoicepdf">
-                                <div class="col border " style="max-width: 380px;">
+                                <div class="col border" style="max-width: 380px;">
                                     <div class="info text-uppercase text-center">
                                         <p class="mb-0"><?php echo $row6['address']; ?></p>
                                         <p> mo <?php echo $row6['phone']; ?> <?php echo $row6['gst']; ?></p>

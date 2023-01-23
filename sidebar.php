@@ -24,7 +24,9 @@
                                
                             </ul>
                         </li>
-                        
+                        <li id="waiter">
+                            <a href="waiter"><i class="fas fa-users"></i><span class="side-txt">Waiter</span></a>
+                        </li>                        
                         
                     </ul>
                 </div>

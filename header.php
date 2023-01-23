@@ -17,7 +17,7 @@
             
             <div class="top-nav-search">
                 <form>
-                    <input type="text" class="form-control" placeholder="Search" />
+                    <input type="text" class="form-control" placeholder="Search" id="search" />
                     <button class="btn" type="submit"><i class="feather-search"></i></button>
                 </form>
             </div>
@@ -47,4 +47,7 @@
 
             </ul>
             <!-- /Header Right Menu -->
+
+
+
         </div>
